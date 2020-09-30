@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    id "io.freefair.lombok" version '5.1.1'
+    id "com.diffplug.spotless" version "5.1.1"
+}
+
+group = 'de.vbg'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '14'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'org.codehaus.groovy:groovy-all:3.0.3'
+    }
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:2.2.4.RELEASE"
+    implementation "javax.validation:validation-api:2.0.1.Final"
+    implementation "io.swagger:swagger-annotations:1.6.2"
+    implementation "org.openapitools:jackson-databind-nullable:0.2.1"
+    
+    developmentOnly "org.springframework.boot:spring-boot-devtools"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+
+    def junitJupiterVersion = "5.4.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+
+    implementation "com.github.tomakehurst:wiremock-jre8:2.27.1"
+    implementation "io.rest-assured:rest-assured:4.3.1"
+    implementation "io.rest-assured:json-path:4.3.1"
+    implementation "io.rest-assured:xml-path:4.3.1"
+}
+
+test {
+    useJUnitPlatform()
+    reports {
+        junitXml.enabled = true
+    }
+}

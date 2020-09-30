@@ -1,0 +1,4 @@
+app:
+  name: error-handler-test
+  version: 1.0
+spring:
